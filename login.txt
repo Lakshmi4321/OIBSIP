@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <title>login athentication</title>
+</html>
+<body>
+    <div id="registrationDiv">
+       <h2>Registration</h2>
+       <form id="registrationForm">
+         <label for="username">Username:</label>
+         <input type="text" id="username" name="username" required>
+         <br>
+         <label for="password">Password:</label>
+         <input type="password" id="password" name="password" required>
+         <br>
+         <button type="submit">Register</button>
+       </form>
+    </div>
+   
+    <div id="loginDiv">
+       <h2>Login</h2>
+       <form id="loginForm">
+         <label for="loginUsername">Username:</label>
+         <input type="text" id="loginUsername" name="loginUsername" required>
+         <br>
+         <label for="loginPassword">Password:</label>
+         <input type="password" id="loginPassword" name="loginPassword" required>
+         <br>
+         <button type="submit">Login</button>
+       </form>
+    </div>
+   
+    <div id="securedDiv" style="display: none;">
+       <h2>Secured Page</h2>
+       <p>Welcome to the secured page!</p>
+    </div>
+   </body>
+   <script>
+   document.getElementById('registrationForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+    localStorage.setItem(username, password);
+    alert('Registration successful!');
+   });
+   
+   document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var username = document.getElementById('loginUsername').value;
+    var password = document.getElementById('loginPassword').value;
+   
+    if (localStorage.getItem(username) === password) {
+      document.getElementById('loginDiv').style.display = 'none';
+      document.getElementById('registrationDiv').style.display = 'none';
+      document.getElementById('securedDiv').style.display = 'block';
+    } else {
+      alert('Login failed!');
+    }
+   });</script>
+   
